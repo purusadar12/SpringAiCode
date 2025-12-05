@@ -18,17 +18,17 @@ public class ChatModelController {
 
     private ChatClient chatClient;
 
-//    @Autowired
-//    public ChatModelController(OpenAiChatModel model){
-//        this.chatClient = ChatClient.create(model);
-//    }
-
     @Autowired
-    public ChatModelController(ChatClient.Builder builder){
-        chatClient = builder
-                .defaultAdvisors(MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build()).build())
-                .build();
+    public ChatModelController(OpenAiChatModel model){
+        this.chatClient = ChatClient.create(model);
     }
+
+//    @Autowired
+//    public ChatModelController(ChatClient.Builder builder){
+//        chatClient = builder
+//                .defaultAdvisors(MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build()).build())
+//                .build();
+//    }
 
     @GetMapping("/api/chat/{prompt}")
     public String chat(@PathVariable("prompt") String prompt){
